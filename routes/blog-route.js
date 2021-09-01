@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const Alien = require('../modules/blog-models')
+const Blog = require('../modules/blog-models')
 
 
 router.get('/', async(req,res) => {
     try{
-           const aliens = await Alien.find()
-           res.json(aliens)
+           const blogs = await Blog.find()
+           res.json(blogs)
     }catch(err){
         res.send({'Error':err})
     }
@@ -14,8 +14,8 @@ router.get('/', async(req,res) => {
 
 router.get('/:id', async(req,res) => {
     try{
-           const alien = await Alien.findById(req.params.id)
-           res.json(alien)
+           const blog = await Blog.findById(req.params.id)
+           res.json(blog)
     }catch(err){
         res.send({'Error':err})
     }
@@ -23,7 +23,7 @@ router.get('/:id', async(req,res) => {
 
 
 router.post('/', async(req,res) => {
-    const alien = new Alien({
+    const blog = new Blog({
         blogID: req.body.blogID,
         uniqueID: req.body.uniqueID,
         title: req.body.title,
@@ -32,23 +32,23 @@ router.post('/', async(req,res) => {
         markdown: req.body.markdown
     })
     try{
-        const a1 =  await alien.save() 
+        const a1 =  await blog.save() 
         res.json(a1)
     }catch(err){
         res.send({'Error':err})
     }
 })
 
-router.patch('/:id',async(req,res)=> {
-    try{
-        const alien = await Alien.findById(req.params.id) 
-        alien.auther = req.body.auther
-        const a1 = await alien.save()
-        res.json(a1)   
-    }catch(err){
-        res.send({'Error':err})
-    }
+// router.patch('/:id',async(req,res)=> {
+//     try{
+//         const alien = await Alien.findById(req.params.id) 
+//         alien.auther = req.body.auther
+//         const a1 = await alien.save()
+//         res.json(a1)   
+//     }catch(err){
+//         res.send({'Error':err})
+//     }
 
-})
+// })
 
 module.exports = router

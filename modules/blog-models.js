@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const alienSchema = new mongoose.Schema({
-
+const blogSchema = new mongoose.Schema({
     blogID: {
         type: String,
         required: true,
@@ -34,4 +33,4 @@ const alienSchema = new mongoose.Schema({
     { timestamps: true }
 )
 
-module.exports = mongoose.model('Alien',alienSchema)
+module.exports = mongoose.model('Blog', blogSchema)

@@ -13,8 +13,8 @@ con.on('open', () => {
 
 app.use(express.json())
 
-const alienRouter = require('./routes/blog-route')
-app.use('/aliens',alienRouter)
+const blogRouter = require('./routes/blog-route')
+app.use('/blogs', blogRouter)
 
 app.listen(9000, () => {
     console.log('Server started')
